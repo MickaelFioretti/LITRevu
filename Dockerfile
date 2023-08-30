@@ -35,6 +35,13 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # Swap to user ${USER} (Root things before this line)
 USER ${USER}
 
+# Install Node
+RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+RUN echo 'source  ~/.nvm/nvm.sh' >> ~/.bashrc
+RUN source  ~/.nvm/nvm.sh && \
+    nvm install 18.17.1 && \
+    nvm use 18.17.1
+
 # Create ssh folder and Load gitlab as known host
 RUN mkdir -p ${HOME}/.ssh
 RUN chmod +rw ${HOME}/.ssh
