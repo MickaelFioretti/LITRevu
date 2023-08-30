@@ -41,6 +41,8 @@ docker compose exec -it litrevu bash
 python manage.py runserver
 ```
 
+## Installation
+
 ### Installation sans Docker
 
 1. Cloner le projet
