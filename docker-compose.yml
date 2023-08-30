@@ -1,5 +1,5 @@
 services:
-  algo_bank:
+  litrevu:
     container_name: litrevu
     # Docker stays up in background
     tty: true
