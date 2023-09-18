@@ -20,6 +20,10 @@ RUN apt-get update && apt-get -y --quiet --no-install-recommends install \
     htop net-tools vim curl git bash-completion \
     sed desktop-file-utils libgl1-mesa-dev libglu1-mesa-dev
 
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs
+
 # Env variable to use terminal / editors
 ENV TERM=xterm
 # Set timezone format
@@ -34,13 +38,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Swap to user ${USER} (Root things before this line)
 USER ${USER}
-
-# Install Node
-RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-RUN echo 'source  ~/.nvm/nvm.sh' >> ~/.bashrc
-RUN source  ~/.nvm/nvm.sh && \
-    nvm install 18.17.1 && \
-    nvm use 18.17.1
 
 # Create ssh folder and Load gitlab as known host
 RUN mkdir -p ${HOME}/.ssh

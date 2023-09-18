@@ -7,8 +7,8 @@ services:
     volumes:
       # Sharing project folder from Host to Docker
       - type: bind
-        source: ./
-        target: /home/user/
+        source: ./website
+        target: /home/user/website
 
     # Share network Stack host to docker
     # Priviledge mode => Not safe for production
