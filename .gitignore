@@ -161,6 +161,8 @@ cython_debug/
 
 # node.js
 /node_modules
+.nvm
+.npm
 
 # vscode
 .vscode-server/
