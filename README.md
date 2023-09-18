@@ -38,7 +38,17 @@ docker compose exec -it litrevu bash
 5. Lancer le projet
 
 ```bash
-python manage.py runserver
+python3 manage.py runserver
+```
+
+6. Pour la première utilisation
+```bash
+python3 manage.py tailwind install
+```
+
+7. Commandes pour exécuter Tailwind CSS
+```bash
+python3 manage.py tailwind start
 ```
 
 ## Installation
