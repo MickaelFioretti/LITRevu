@@ -8,16 +8,30 @@
         {% tailwind_css %}
     </head>
     <body>
-        <p>{{ message }}</p>
+        <div class="flex flex-col items-center">
+            <h2 class="m-6">Inscrivez-vous</h2>
 
-        <form method="post">
-            {{ form.as_p }} {% csrf_token %}
-            <button type="submit">S'inscrire</button>
-        </form>
+            <form
+                method="post"
+                class="flex flex-col items-center gap-2 w-[500px]"
+            >
+                {% csrf_token %} {{ form.username }}
+                {{ form.password1 }} {{ form.password2 }}
 
-        <p>
-            Déjà inscrit ?
-            <a href="{% url 'login' %}">Connectez-vous</a>
-        </p>
+                <div class="self-end mt-4">
+                    <a
+                        class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        href="{% url 'login' %}"
+                        >Retourner</a
+                    >
+                    <button
+                        type="submit"
+                        class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    >
+                        S'inscrire
+                    </button>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
