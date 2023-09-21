@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "authentication",
-    "registration",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +131,6 @@ TAILWIND_APP_NAME = "theme"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# Django Authentication System
+AUTH_USER_MODEL = "authentication.User"
