@@ -1,0 +1,23 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inscription</title>
+        {% tailwind_css %}
+    </head>
+    <body>
+        <p>{{ message }}</p>
+
+        <form method="post">
+            {{ form.as_p }} {% csrf_token %}
+            <button type="submit">S'inscrire</button>
+        </form>
+
+        <p>
+            Déjà inscrit ?
+            <a href="{% url 'login' %}">Connectez-vous</a>
+        </p>
+    </body>
+</html>

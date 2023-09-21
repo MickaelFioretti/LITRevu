@@ -10,6 +10,5 @@ urlpatterns = [
         LoginView.as_view(template_name="login.html", redirect_authenticated_user=True),
         name="login",
     ),
-    path('admin/', admin.site.urls),
-    path('', index),
+    path("signup", views.signup_page, name="signup"),
 ]
