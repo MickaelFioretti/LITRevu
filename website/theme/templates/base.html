@@ -1,19 +1,33 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-    <title>Django Tailwind</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		{% tailwind_css %}
-	</head>
 
-	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-		<div class="container mx-auto">
-			<section class="flex items-center justify-center h-screen">
-				<h1 class="text-5xl">Django + Tailwind = ❤️</h1>
-			</section>
+<head>
+	<title>LITReveiw</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% tailwind_css %}
+</head>
+
+<body class="bg-gray-50 font-serif leading-normal tracking-normal">
+	<div id="navbar" class="flex flex-row min-w-full h-8 border-b-2 border-black">
+		<h2 class="m-auto">LITReveiw</h2>
+		{% if not user.is_authenticated %}
+		<div class="absolute right-5 mt-1 mb-1">
+			<ul class="flex flex-row gap-3">
+				<li><a href="">Flux</a></li>
+				<li><a href="">Post</a></li>
+				<li><a href="">Abonnements</a></li>
+				<li><a href="">Se déconnecter</a></li>
+			</ul>
 		</div>
-	</body>
+		{% endif %}
+	</div>
+	<div id="main" class="mt-6">
+		{% block content %}
+		{% endblock content %}
+	</div>
+</body>
+
 </html>

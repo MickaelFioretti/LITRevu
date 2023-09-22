@@ -1,37 +1,20 @@
-{% load tailwind_tags %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Inscription</title>
-        {% tailwind_css %}
-    </head>
-    <body>
-        <div class="flex flex-col items-center">
-            <h2 class="m-6">Inscrivez-vous</h2>
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex flex-col items-center">
+    <h2 class="m-6">Inscrivez-vous</h2>
 
-            <form
-                method="post"
-                class="flex flex-col items-center gap-2 w-[500px]"
-            >
-                {% csrf_token %} {{ form.username }}
-                {{ form.password1 }} {{ form.password2 }}
+    <form method="post" class="flex flex-col items-center gap-2 w-[500px]">
+        {% csrf_token %} {{ form.username }}
+        {{ form.password1 }} {{ form.password2 }}
 
-                <div class="self-end mt-4">
-                    <a
-                        class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        href="{% url 'login' %}"
-                        >Retourner</a
-                    >
-                    <button
-                        type="submit"
-                        class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                    >
-                        S'inscrire
-                    </button>
-                </div>
-            </form>
+        <div class="self-end mt-4">
+            <a class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                href="{% url 'login' %}">Retourner</a>
+            <button type="submit"
+                class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                S'inscrire
+            </button>
         </div>
-    </body>
-</html>
+    </form>
+</div>
+{% endblock content %}
