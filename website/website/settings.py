@@ -141,3 +141,7 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "acceuil"
 
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+MEDIA_ROOT = BASE_DIR / "media"
+
+MEDIA_URL = "/media/"
