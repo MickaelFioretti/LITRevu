@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-    Vous êtes connecté !
+<div class="flex flex-col items-center">
+    <div class="flex flex-row justify-evenly w-1/2">
+        <a href="{% url 'create_ticket' %}" class="btn-blue">Demander une critique</a>
+        <button>
+            <a href="" class="btn-blue">Créer une critique</a>
+        </button>
+    </div>
 </div>
 {% endblock content %}
