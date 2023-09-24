@@ -25,7 +25,8 @@
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
 				"GitHub.copilot-labs",
-				"oderwat.indent-rainbow"
+				"oderwat.indent-rainbow",
+				"ms-python.black-formatter"
 			]
 		}
 	}
