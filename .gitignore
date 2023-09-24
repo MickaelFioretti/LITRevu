@@ -167,3 +167,8 @@ cython_debug/
 # vscode
 .vscode-server/
 .local
+
+# media
+*.png
+*.jpg
+*.jpeg

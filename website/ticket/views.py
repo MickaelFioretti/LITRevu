@@ -1,34 +1,41 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from .models import Ticket
 from django.conf import settings
 
-from . import forms
+
 
 # Create your views here.
 class TicketCreatePageView(View):
     template_name = "create_ticket.html"
-    form_class = forms.TicketForm
 
     def get(self, request):
-        form = self.form_class()
         return render(
             request,
             self.template_name,
-            context={"form": form}
+            context={}
         )
     
     def post(self, request):
-        form = self.form_class(request.POST, request.FILES)
         message = ""
-        if form.is_valid():
-            ticket = form.save(commit=False)
-            ticket.id_user = request.user
-            ticket.save()
-            return redirect(settings.LOGIN_REDIRECT_URL)
-        else:
-            message = "Veuillez remplir tous les champs."
+        print("*" * 100, request)
+        if request.method == "POST":
+            title = request.POST.get("title")
+            description = request.POST.get("description")
+            image = request.FILES.get("image")
+            if title and description and image:
+                ticket = Ticket.objects.create(
+                    title=title,
+                    description=description,
+                    image=image,
+                    id_user=request.user
+                )
+                ticket.save()
+                return redirect(settings.LOGIN_REDIRECT_URL)
+            else:
+                message = "Veuillez remplir tous les champs."
         return render(
             request,
             self.template_name,
-            context={"form": form, "message": message}
+            context={"message": message}
         )

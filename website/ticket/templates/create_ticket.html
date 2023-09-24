@@ -1,13 +1,61 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="flex flex-col items-center">
     <h2 class="m-6">Créer un ticket</h2>
 
-    <form action="post" class="flex flex-col items-center gap-2 w-9/12">
+    <form
+        method="post"
+        enctype="multipart/form-data"
+        class="flex flex-col items-center gap-2 w-9/12"
+    >
         {% csrf_token %}
-        {{ form.title }}
-        {{ form.description }}
-        {{ form.image }}
+        <!-- Input: for title of ticket -->
+        <label for="titre" class="self-start">Titre</label>
+        <input
+            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            id="titre"
+            name="title"
+            type="text"
+        />
+        <!-- Input: for description of ticket -->
+        <label for="description" class="self-start">Description</label>
+        <textarea
+            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            id="description"
+            name="description"
+            type="text"
+            rows="6"
+        ></textarea>
+        <!-- input file: for image of ticket -->
+        <label for="image" class="self-start">Image</label>
+        <input
+            id="image"
+            accept="image/png, image/jpeg"
+            name="image"
+            type="file"
+            hidden
+        />
+        <label
+            for="image"
+            class="self-start rounded cursor-pointer border border-slate-600 font-medium px-2 py-1 hover:bg-slate-200"
+            >Télécharger fichier</label
+        >
+        <!-- name of file chosen -->
+        <span id="file-chosen" class="self-start">Aucun fichier choisi</span>
+        <!-- button: for send form -->
+        <div class="self-end mt-4">
+            <button type="submit" class="btn-green">envoyer</button>
+        </div>
     </form>
 </div>
+<script>
+    // get input file
+    const fileInput = document.getElementById("image");
+    // get span for name of file chosen
+    const fileChosen = document.getElementById("file-chosen");
+    // add event listener for change input file
+    fileInput.addEventListener("change", function () {
+        // change name of file chosen
+        fileChosen.textContent = this.files[0].name;
+    });
+</script>
 {% endblock content %}
