@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "theme",
     "authentication",
     "flux",
+    "ticket",
 ]
 
 MIDDLEWARE = [
