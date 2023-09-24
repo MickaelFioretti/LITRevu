@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex flex-col items-center">
+    <h2 class="m-6">Créer un ticket</h2>
+
+    <form action="post" class="flex flex-col items-center gap-2 w-9/12">
+        {% csrf_token %}
+        {{ form.title }}
+        {{ form.description }}
+        {{ form.image }}
+    </form>
+</div>
+{% endblock content %}

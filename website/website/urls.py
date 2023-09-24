@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 import authentication.views
 import flux.views
+import ticket.views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -21,5 +22,10 @@ urlpatterns = [
         "acceuil/",
         flux.views.index,
         name="acceuil"
-    )
+    ),
+    path(
+        "create_ticket/",
+        ticket.views.TicketCreatePageView.as_view(),
+        name="create_ticket"
+    ),
 ]
