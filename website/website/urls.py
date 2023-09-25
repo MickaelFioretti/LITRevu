@@ -3,6 +3,7 @@ from django.urls import path
 import authentication.views
 import flux.views
 import ticket.views
+import review.views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -18,14 +19,15 @@ urlpatterns = [
         LogoutView.as_view(next_page="login"),
         name="logout",
     ),
-    path(
-        "acceuil/",
-        flux.views.index,
-        name="acceuil"
-    ),
+    path("acceuil/", flux.views.index, name="acceuil"),
     path(
         "create_ticket/",
         ticket.views.TicketCreatePageView.as_view(),
-        name="create_ticket"
+        name="create_ticket",
+    ),
+    path(
+        "create_review/",
+        review.views.ReviewCreatePageView.as_view(),
+        name="create_review",
     ),
 ]
