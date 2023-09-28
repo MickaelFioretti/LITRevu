@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .models import Ticket
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
-class TicketCreatePageView(View):
+class TicketCreatePageView(LoginRequiredMixin, View):
     template_name = "create_ticket.html"
 
     def get(self, request):

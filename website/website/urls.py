@@ -19,7 +19,7 @@ urlpatterns = [
         LogoutView.as_view(next_page="login"),
         name="logout",
     ),
-    path("acceuil/", flux.views.index, name="acceuil"),
+    path("acceuil/", flux.views.FluxPageView.as_view(), name="acceuil"),
     path(
         "create_ticket/",
         ticket.views.TicketCreatePageView.as_view(),
