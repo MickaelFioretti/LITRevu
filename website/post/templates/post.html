@@ -1,5 +1,32 @@
 {% extends 'base.html' %} {% block content %}
-<div>
-    <h1>POST</h1>
+<div class="flex flex-col items-center mb-6">
+    {% for ticket in tickets %}
+    <div
+        class="flex flex-col items-center gap-2 w-9/12 mt-4 border border-gray-500"
+    >
+        <h2 class="self-start">Vous avez publié un ticket</h2>
+        <h3 class="self-end">{{ ticket.time_created }}</h3>
+        <h2 class="self-start">
+            {{ ticket.title }} - {{ ticket.description }}
+        </h2>
+        <img
+            class="self-start max-w-[15rem]"
+            src="{{ ticket.image.url }}"
+            alt="{{ ticket.title }}"
+        />
+        <div class="self-end flex justify-around w-[18rem] mb-4">
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Modifier
+            </button>
+            <button
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Supprimer
+            </button>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock content %}
