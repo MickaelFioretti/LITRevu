@@ -4,6 +4,7 @@ import authentication.views
 import flux.views
 import ticket.views
 import review.views
+import post.views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -29,5 +30,10 @@ urlpatterns = [
         "create_review/",
         review.views.ReviewCreatePageView.as_view(),
         name="create_review",
+    ),
+    path(
+        "post/",
+        post.views.PostPageView.as_view(),
+        name="post",
     ),
 ]

@@ -1,38 +1,40 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>LITReveiw</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        {% tailwind_css %}
+    </head>
 
-<head>
-	<title>LITReveiw</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	{% tailwind_css %}
-</head>
-
-<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-	{% if not user.is_authenticated %}
-	<div id="navbar" class="flex flex-row min-w-full h-8 border-b-2 border-black">
-		<h2 class="m-auto">LITReveiw</h2>
-	</div>
-	{% endif %}
-	{% if user.is_authenticated %}
-	<div id="navbar" class="flex flex-row min-w-full h-8 border-b-2 border-black">
-		<h2 class="m-auto">LITReveiw</h2>
-		<div class="absolute right-5 mt-1 mb-1">
-			<ul class="flex flex-row gap-3">
-				<li><a href="{% url 'acceuil' %}">Flux</a></li>
-				<li><a href="">Post</a></li>
-				<li><a href="">Abonnements</a></li>
-				<li><a href="{% url 'logout' %}">Se déconnecter</a></li>
-			</ul>
-		</div>
-	</div>
-	{% endif %}
-	<div id="main" class="mt-6">
-		{% block content %}
-		{% endblock content %}
-	</div>
-</body>
-
+    <body class="bg-gray-50 font-serif leading-normal tracking-normal">
+        {% if not user.is_authenticated %}
+        <div
+            id="navbar"
+            class="flex flex-row min-w-full h-8 border-b-2 border-black"
+        >
+            <h2 class="m-auto">LITReveiw</h2>
+        </div>
+        {% endif %} {% if user.is_authenticated %}
+        <div
+            id="navbar"
+            class="flex flex-row min-w-full h-8 border-b-2 border-black"
+        >
+            <h2 class="m-auto">LITReveiw</h2>
+            <div class="absolute right-5 mt-1 mb-1">
+                <ul class="flex flex-row gap-3">
+                    <li><a href="{% url 'acceuil' %}">Flux</a></li>
+                    <li><a href="{% url 'post' %}">Post</a></li>
+                    <li><a href="">Abonnements</a></li>
+                    <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <div id="main" class="mt-6">
+            {% block content %} {% endblock content %}
+        </div>
+    </body>
 </html>
