@@ -2,20 +2,39 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.views import View
+from .models import User
 
 from . import forms
 
 
-def signup_page(request):
-    form = forms.SignupForm()
-    if request.method == "POST":
-        form = forms.SignupForm(request.POST)
-        print(form.errors)
-        if form.is_valid():
-            form.save()
-            return redirect(settings.LOGIN_URL)
-    return render(request, "signup.html", context={"form": form})
+class SignupPageView(View):
+    template_name = "signup.html"
 
+    def get(self, request):
+        return render(request, self.template_name, context={})
+
+    def post(self, request):
+        message = ""
+        if request.method == "POST":
+            username = request.POST.get("username")
+            password1 = request.POST.get("password1")
+            password2 = request.POST.get("password2")
+            if username and password1 and password2:
+                if password1 == password2:
+                    user = User.objects.create_user(
+                        username=username, password=password1
+                    )
+                    user.save()
+                    return redirect(settings.LOGIN_URL)
+                else:
+                    message = "Les mots de passe ne correspondent pas."
+            else:
+                message = "Veuillez remplir tous les champs."
+        return render(
+            request,
+            self.template_name,
+            context={"message": message},
+        )
 
 
 class LoginPageView(View):
@@ -26,11 +45,8 @@ class LoginPageView(View):
         form = self.form_class()
         message = ""
         return render(
-            request,
-            self.template_name,
-            context={"form": form, "message": message}
+            request, self.template_name, context={"form": form, "message": message}
         )
-    
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -45,7 +61,5 @@ class LoginPageView(View):
             else:
                 message = "Nom d'utilisateur ou mot de passe incorrect."
         return render(
-            request,
-            self.template_name,
-            context={"form": form, "message": message}
+            request, self.template_name, context={"form": form, "message": message}
         )

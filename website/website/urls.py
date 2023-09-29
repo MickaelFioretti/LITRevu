@@ -13,7 +13,7 @@ urlpatterns = [
         authentication.views.LoginPageView.as_view(),
         name="login",
     ),
-    path("signup", authentication.views.signup_page, name="signup"),
+    path("signup", authentication.views.SignupPageView.as_view(), name="signup"),
     path(
         "logout",
         LogoutView.as_view(next_page="login"),

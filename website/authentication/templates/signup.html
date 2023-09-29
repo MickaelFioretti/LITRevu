@@ -3,7 +3,31 @@
     <h2 class="m-6">Inscrivez-vous</h2>
 
     <form method="post" class="flex flex-col items-center gap-2 w-[500px]">
-        {% csrf_token %} {{ form.username }} {{ form.password1 }} {{ form.password2 }}
+        {% csrf_token %}
+        <!-- Input: for username -->
+        <input
+            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            name="username"
+            type="text"
+            placeholder="Nom d'utilisateur"
+        />
+
+        <!-- Input: for password -->
+        <input
+            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            name="password1"
+            type="password"
+            placeholder="Mot de passe"
+        />
+
+        <!-- Input: for password confirmation -->
+        <input
+            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            name="password2"
+            type="password"
+            placeholder="Confirmer le mot de passe"
+        />
+
         <div class="self-end mt-4">
             <a class="btn-blue" href="{% url 'login' %}">Retourner</a>
             <button type="submit" class="btn-green">S'inscrire</button>
