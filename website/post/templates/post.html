@@ -1,27 +1,80 @@
-{% extends 'base.html' %} {% block content %}
-<div class="flex flex-col items-center mb-6">
+{% extends 'base.html' %} {% block content %} {% load i18n %}
+<style>
+    .rating {
+        font-size: 24px; /* Taille de la police pour les étoiles */
+    }
+
+    .star {
+        color: gold; /* Couleur des étoiles remplies */
+    }
+</style>
+<div class="flex flex-col items-center mb-6 gap-1">
+    <!-- Display the user's tickets -->
     {% for ticket in tickets %}
     <div
-        class="flex flex-col items-center gap-2 w-9/12 mt-4 border border-gray-500"
+        class="card"
     >
         <h2 class="self-start">Vous avez publié un ticket</h2>
-        <h3 class="self-end">{{ ticket.time_created }}</h3>
+        <h3 class="self-end text-sm mr-4">{{ ticket.time_created }}</h3>
         <h2 class="self-start">
             {{ ticket.title }} - {{ ticket.description }}
         </h2>
         <img
-            class="self-start max-w-[15rem]"
+            class="self-start max-w-[15rem] ml-3 pb-3"
             src="{{ ticket.image.url }}"
             alt="{{ ticket.title }}"
         />
-        <div class="self-end flex justify-around w-[18rem] mb-4">
+        <div class="self-end flex justify-evenly w-[15rem]">
             <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                class="btn-blue"
             >
                 Modifier
             </button>
             <button
-                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                class="btn-red"
+            >
+                Supprimer
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Display the user's reviews -->
+    {% for review in reviews %}
+    <div
+        class="card"
+    >
+        <h2 class="self-start">Vous avez publié une critique</h2>
+        <h3 class="self-end text-sm mr-4">{{ review.time_created }}</h3>
+        <div class="rating self-start">
+            <span class="text-base">{{ review.headline }} -</span>
+            {% for i in review.rating %}
+            <span class="star">&#9733;</span>
+            {% endfor %} {% for i in review.rating_empty %}
+            <span class="">&#9734;</span>
+            {% endfor %}
+        </div>
+        <p class="self-start text-xs">{{ review.body }}</p>
+        <div class="flex flex-col ml-4 pt-3 pb-3 w-full">
+            <h2 class="self-start">Ticket - {% if review.id_ticket.id_user == user %}Vous{% else %}{{ review.id_ticket.id_user }}{% endif %}</h2>
+            <h3 class="self-end text-sm mr-4">{{ review.id_ticket.time_created }}</h3>
+            <h2 class="self-start">
+                {{review.id_ticket.title}} - {{review.id_ticket.description}}
+            </h2>
+            <img
+                class="self-start max-w-[15rem] ml-3"
+                src="{{ review.id_ticket.image.url }}"
+                alt="{{ review.id_ticket.title }}"
+            />
+        </div>
+        <div class="self-end flex justify-evenly w-[15rem]">
+            <button
+                class="btn-blue"
+            >
+                Modifier
+            </button>
+            <button
+                class="btn-red"
             >
                 Supprimer
             </button>
