@@ -6,7 +6,7 @@ class LoginForm(forms.Form):
         max_length=150,
         widget=forms.TextInput(
             attrs={
-                "class": "w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium",
+                "class": "input-text",
                 "placeholder": "Nom d'utilisateur",
             }
         ),
@@ -15,8 +15,8 @@ class LoginForm(forms.Form):
         max_length=150,
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium",
-                "placeholder": "Mot de passe",
+                "class": "input-password",
+                "placeholder": "*********",
             }
         ),
     )

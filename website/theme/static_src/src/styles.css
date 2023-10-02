@@ -21,3 +21,38 @@
 .card {
     @apply flex flex-col items-center gap-2 w-1/2 mt-4 bg-[#f1f1f1] rounded-lg shadow-md shadow-[#bebebe] p-2;
 }
+
+/* Buttons */
+
+.btn-info {
+    @apply px-6 py-2 font-semibold tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#0499B5] rounded-lg hover:bg-[#006C9C] focus:outline-none focus:ring focus:ring-[#61F3F3] focus:ring-opacity-80;
+}
+
+.btn-success {
+    @apply px-6 py-2 font-semibold tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#22C55E] rounded-lg hover:bg-[#118D57] focus:outline-none focus:ring focus:ring-[#77ED8B] focus:ring-opacity-80;
+}
+
+.btn-error {
+    @apply px-6 py-2 font-semibold tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#FF5630] rounded-lg hover:bg-[#B71D18] focus:outline-none focus:ring focus:ring-[#FFAC82] focus:ring-opacity-80;
+}
+
+.btn-warning {
+    @apply px-6 py-2 font-semibold tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#FFAB00] rounded-lg hover:bg-[#B76E00] focus:outline-none focus:ring focus:ring-[#FFD666] focus:ring-opacity-80;
+}
+
+/* Input */
+.label {
+    @apply block text-sm text-gray-600 dark:text-gray-300;
+}
+
+.input-text {
+    @apply block  mt-2 w-full placeholder-gray-400/80 dark:placeholder-gray-500 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300;
+}
+
+.input-password {
+    @apply block w-full py-2.5 text-gray-700 placeholder-gray-400/80 bg-white border border-gray-300 rounded-lg pl-5 pr-11 rtl:pr-5 rtl:pl-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40;
+}
+
+.input-file {
+    @apply block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300;
+}

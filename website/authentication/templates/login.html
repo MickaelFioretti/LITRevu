@@ -3,17 +3,33 @@
 <div class="flex flex-row justify-evenly items-center">
     <div class="flex flex-col items-center gap-2">
         <h2>Inscrivez-vous maintenant</h2>
-        <a class="btn-blue" href="{% url 'signup' %}">S'inscrire</a>
+        <a class="btn-info" href="{% url 'signup' %}">S'inscrire</a>
     </div>
     <div class="flex flex-col items-center">
         <h2 class="m-6">Connectez-vous</h2>
 
         <form method="post" class="flex flex-col items-center gap-2">
             {% csrf_token %}
-            <div>{{ form.username }}</div>
-            <div>{{ form.password }}</div>
+            <!-- Input: for username -->
+            <label for="username" class="label self-start" >Nom d'utilisateur</label>
+            <input
+                class="input-text"
+                name="username"
+                type="text"
+                placeholder="Nom d'utilisateur"
+            />
+
+            <!-- Input: for password -->
+            <label for="password" class="label self-start">Mot de passe</label>
+            <input
+                class="input-password"
+                name="password"
+                type="password"
+                placeholder="********"
+            />
+
             <p>{{ message }}</p>
-            <button type="submit" class="btn-blue">
+            <button type="submit" class="btn-info">
                 Se connecter
             </button>
         </form>

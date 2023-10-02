@@ -14,18 +14,13 @@
         <h2 class="self-center">Livre / Article</h2>
 
         <!-- Input: for title of ticket -->
-        <label for="titre" class="self-start">Titre</label>
-        <input
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
-            id="titre"
-            name="title"
-            type="text"
-        />
+        <label for="titre" class="label self-start">Titre</label>
+        <input class="input-text" id="titre" name="title" type="text" />
 
         <!-- Input: for description of ticket -->
-        <label for="description" class="self-start">Description</label>
+        <label for="description" class="label self-start">Description</label>
         <textarea
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            class="input-text"
             id="description"
             name="description"
             type="text"
@@ -33,37 +28,31 @@
         ></textarea>
 
         <!-- input file: for image of ticket -->
-        <label for="image" class="self-start">Image</label>
-        <input
-            id="image"
-            accept="image/png, image/jpeg"
-            name="image"
-            type="file"
-            hidden
-        />
-        <label
-            for="image"
-            class="self-start rounded cursor-pointer border border-slate-600 font-medium px-2 py-1 hover:bg-slate-200"
-            >Télécharger fichier</label
-        >
-        <!-- name of file chosen -->
-        <span id="file-chosen" class="self-start">Aucun fichier choisi</span>
-
+        <div class="self-start mb-3">
+            <label for="image" class="label self-start">Image</label>
+            <input
+                class="input-file"
+                id="image"
+                accept="image/png, image/jpeg"
+                name="image"
+                type="file"
+            />
+        </div>
         <!-- cree un span qui serre de divider -->
         <span class="w-full border-b border-gray-500"></span>
 
         <h2 class="self-center">Critique</h2>
 
         <!-- Input: for headline of review -->
-        <label for="headline" class="self-start">Titre</label>
+        <label for="headline" class="label self-start">Titre</label>
         <input
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            class="input-text"
             id="headline"
             name="headline"
             type="text"
         />
         <!-- Input: for rating review -->
-        <label for="rating" class="self-start">Note</label>
+        <label for="rating" class="label self-start">Note</label>
         <div class="flex flex-row gap-8 rate">
             <span>
                 <input
@@ -127,9 +116,9 @@
             </span>
         </div>
         <!-- Input: for body of review -->
-        <label for="body" class="self-start">Description</label>
+        <label for="body" class="label self-start">Description</label>
         <textarea
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            class="input-text"
             id="body"
             name="body"
             type="text"
@@ -137,19 +126,8 @@
         ></textarea>
         <!-- button: for send form -->
         <div class="self-end mt-4">
-            <button type="submit" class="btn-green">envoyer</button>
+            <button type="submit" class="btn-success">envoyer</button>
         </div>
     </form>
 </div>
-<script>
-    // get input file
-    const fileInput = document.getElementById("image");
-    // get span for name of file chosen
-    const fileChosen = document.getElementById("file-chosen");
-    // add event listener for change input file
-    fileInput.addEventListener("change", function () {
-        // change name of file chosen
-        fileChosen.textContent = this.files[0].name;
-    });
-</script>
 {% endblock content %}

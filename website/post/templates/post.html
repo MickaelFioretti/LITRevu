@@ -8,42 +8,53 @@
         color: gold; /* Couleur des étoiles remplies */
     }
 </style>
-<div class="flex flex-col items-center mb-6 gap-1">
+<div class="flex flex-col items-center mb-6 gap-3">
+    <h2 class="m-6">{{message}}</h2>
     <!-- Display the user's tickets -->
     {% for ticket in tickets %}
     <div
-        class="card"
+        class="flex flex-col w-[35rem] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
     >
-        <h2 class="self-start">Vous avez publié un ticket</h2>
-        <h3 class="self-end text-sm mr-4">{{ ticket.time_created }}</h3>
-        <h2 class="self-start">
-            {{ ticket.title }} - {{ ticket.description }}
-        </h2>
         <img
-            class="self-start max-w-[15rem] ml-3 pb-3"
+            class="object-cover w-full h-64"
             src="{{ ticket.image.url }}"
-            alt="{{ ticket.title }}"
+            alt="Article"
         />
-        <div class="self-end flex justify-evenly w-[15rem]">
+
+        <div class="p-6">
+            <div>
+                <span
+                    class="text-xs font-bold text-blue-600 uppercase dark:text-blue-400"
+                    >Ticket</span
+                >
+                <a
+                    href="#"
+                    class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
+                    tabindex="0"
+                    role="link"
+                >
+                    {{ ticket.title }}
+                </a>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    {{ ticket.description }}
+                </p>
+            </div>
+        </div>
+
+        <div class="m-2 self-end">
             <button
-                class="btn-blue"
-            >
-                Modifier
-            </button>
+                class="btn-info text-sm"
+            >Modifier</button>
             <button
-                class="btn-red"
-            >
-                Supprimer
-            </button>
+                class="btn-error text-sm"
+            >Supprimer</button>
         </div>
     </div>
     {% endfor %}
 
     <!-- Display the user's reviews -->
     {% for review in reviews %}
-    <div
-        class="card"
-    >
+    <div class="card">
         <h2 class="self-start">Vous avez publié une critique</h2>
         <h3 class="self-end text-sm mr-4">{{ review.time_created }}</h3>
         <div class="rating self-start">
@@ -56,8 +67,12 @@
         </div>
         <p class="self-start text-xs">{{ review.body }}</p>
         <div class="flex flex-col ml-4 pt-3 pb-3 w-full">
-            <h2 class="self-start">Ticket - {% if review.id_ticket.id_user == user %}Vous{% else %}{{ review.id_ticket.id_user }}{% endif %}</h2>
-            <h3 class="self-end text-sm mr-4">{{ review.id_ticket.time_created }}</h3>
+            <h2 class="self-start">
+                Ticket - {% if review.id_ticket.id_user == user %}Vous{% else%}{{ review.id_ticket.id_user }}{% endif %}
+            </h2>
+            <h3 class="self-end text-sm mr-4">
+                {{ review.id_ticket.time_created }}
+            </h3>
             <h2 class="self-start">
                 {{review.id_ticket.title}} - {{review.id_ticket.description}}
             </h2>
@@ -67,17 +82,9 @@
                 alt="{{ review.id_ticket.title }}"
             />
         </div>
-        <div class="self-end flex justify-evenly w-[15rem]">
-            <button
-                class="btn-blue"
-            >
-                Modifier
-            </button>
-            <button
-                class="btn-red"
-            >
-                Supprimer
-            </button>
+        <div class="self-end flex justify-evenly w-[15rem] gap-2">
+            <button class="btn-info">Modifier</button>
+            <button class="btn-error">Supprimer</button>
         </div>
     </div>
     {% endfor %}

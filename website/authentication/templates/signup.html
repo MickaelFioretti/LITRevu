@@ -5,32 +5,37 @@
     <form method="post" class="flex flex-col items-center gap-2 w-[500px]">
         {% csrf_token %}
         <!-- Input: for username -->
+        <label for="username" class="label self-start" >Nom d'utilisateur</label>
         <input
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            class="input-text"
             name="username"
             type="text"
             placeholder="Nom d'utilisateur"
         />
 
         <!-- Input: for password -->
+        <label for="password1" class="label self-start">Mot de passe</label>
         <input
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            class="input-password"
             name="password1"
             type="password"
-            placeholder="Mot de passe"
+            placeholder="********"
         />
 
         <!-- Input: for password confirmation -->
+        <label for="password2" class="label self-start">Confirmer le mot de passe</label>
         <input
-            class="w-full px-4 mb-2 border border-slate-600 rounded-lg font-medium"
+            class="input-password"
             name="password2"
             type="password"
             placeholder="Confirmer le mot de passe"
         />
 
         <div class="self-end mt-4">
-            <a class="btn-blue" href="{% url 'login' %}">Retourner</a>
-            <button type="submit" class="btn-green">S'inscrire</button>
+            <button class="btn-info">
+                <a href="{% url 'login' %}">Retourner</a>
+            </button>
+            <button type="submit" class="btn-success">S'inscrire</button>
         </div>
     </form>
 </div>

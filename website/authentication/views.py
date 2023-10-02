@@ -42,18 +42,16 @@ class LoginPageView(View):
     form_class = forms.LoginForm
 
     def get(self, request):
-        form = self.form_class()
         message = ""
         return render(
-            request, self.template_name, context={"form": form, "message": message}
+            request, self.template_name, context={"message": message}
         )
 
     def post(self, request):
-        form = self.form_class(request.POST)
         message = ""
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
+        if request.method == "POST":
+            username = request.POST.get("username")
+            password = request.POST.get("password")
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
@@ -61,5 +59,5 @@ class LoginPageView(View):
             else:
                 message = "Nom d'utilisateur ou mot de passe incorrect."
         return render(
-            request, self.template_name, context={"form": form, "message": message}
+            request, self.template_name, context={"message": message}
         )
