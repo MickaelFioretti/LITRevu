@@ -12,6 +12,7 @@ class PostPageView(View):
     def get(self, request):
         tickets = Ticket.objects.all()
         reviews = Review.objects.all()
+        message = ""
 
         # Change the format of the time_created field 13:14, 26 août 2020
         for ticket in tickets:
@@ -26,8 +27,17 @@ class PostPageView(View):
             review.rating_empty = range(5 - review.rating)
             review.rating = range(review.rating)
 
+        # si ticket et vide print message
+        if not tickets and not reviews:
+            message = "Il n'y a pas de ticket ou de review pour le moment"
+
         return render(
             request,
             self.template_name,
-            context={"tickets": tickets, "reviews": reviews, "user": request.user},
+            context={
+                "tickets": tickets,
+                "reviews": reviews,
+                "user": request.user,
+                "message": message,
+            },
         )
