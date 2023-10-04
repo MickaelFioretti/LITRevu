@@ -1,16 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 <div class="flex flex-col items-center">
     <div class="flex flex-row justify-evenly w-1/2">
-        <button class="btn-info">
-            <a href="{% url 'create_ticket' %}"
-                >Demander une critique</a
-            >
+        <button
+            class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
+        >
+            <a href="{% url 'create_ticket' %}">Demander une critique</a>
         </button>
 
-        <button class="btn-info">
-            <a href="{% url 'create_review' %}"
-                >Créer une critique</a
-            >
+        <button
+            class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
+        >
+            <a href="{% url 'create_review' %}">Créer une critique</a>
         </button>
     </div>
 </div>

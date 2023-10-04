@@ -5,7 +5,7 @@
     <form method="post" class="flex flex-col items-center gap-2 w-[500px]">
         {% csrf_token %}
         <!-- Input: for username -->
-        <label for="username" class="label self-start" >Nom d'utilisateur</label>
+        <label for="username" class="label self-start">Nom d'utilisateur</label>
         <input
             class="input-text"
             name="username"
@@ -23,7 +23,9 @@
         />
 
         <!-- Input: for password confirmation -->
-        <label for="password2" class="label self-start">Confirmer le mot de passe</label>
+        <label for="password2" class="label self-start"
+            >Confirmer le mot de passe</label
+        >
         <input
             class="input-password"
             name="password2"
@@ -32,10 +34,17 @@
         />
 
         <div class="self-end mt-4">
-            <button class="btn-info">
+            <button
+                class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
+            >
                 <a href="{% url 'login' %}">Retourner</a>
             </button>
-            <button type="submit" class="btn-success">S'inscrire</button>
+            <button
+                type="submit"
+                class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
+            >
+                S'inscrire
+            </button>
         </div>
     </form>
 </div>

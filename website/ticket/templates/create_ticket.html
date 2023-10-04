@@ -10,12 +10,7 @@
         {% csrf_token %}
         <!-- Input: for title of ticket -->
         <label for="titre" class="label self-start">Titre</label>
-        <input
-            class="input-text"
-            id="titre"
-            name="title"
-            type="text"
-        />
+        <input class="input-text" id="titre" name="title" type="text" />
 
         <!-- Input: for description of ticket -->
         <label for="description" class="label self-start">Description</label>
@@ -41,7 +36,12 @@
 
         <!-- button: for send form -->
         <div class="self-end mt-4">
-            <button type="submit" class="btn-success">envoyer</button>
+            <button
+                type="submit"
+                class="button bg-[#D0D3D4] text-[#17202A] hover:bg-[#17202A] hover:text-white"
+            >
+                envoyer
+            </button>
         </div>
     </form>
 </div>
