@@ -39,6 +39,11 @@ urlpatterns = [
         name="create_review",
     ),
     path(
+        "delete_review/",
+        review.views.ReviewDeleteView.as_view(),
+        name="delete_review",
+    ),
+    path(
         "post/",
         post.views.PostPageView.as_view(),
         name="post",

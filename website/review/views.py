@@ -4,6 +4,7 @@ from .models import Review
 from ticket.models import Ticket
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -49,3 +50,16 @@ class ReviewCreatePageView(LoginRequiredMixin, View):
             else:
                 message = "Veuillez remplir tous les champs."
         return render(request, self.template_name, context={"message": message})
+
+
+class ReviewDeleteView(LoginRequiredMixin, View):
+    def post(self, request):
+        if request.method == "POST":
+            review_id = request.POST.get("review_id")
+            review = get_object_or_404(Review, id=review_id)
+
+            # Supprimez le review
+            review.delete()
+
+            return redirect(settings.LOGIN_REDIRECT_URL)
+        return redirect(settings.LOGIN_REDIRECT_URL)

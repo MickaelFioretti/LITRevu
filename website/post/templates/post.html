@@ -173,11 +173,15 @@
         </div>
 
         <div class="flex self-end mt-4 gap-2">
-            <button
-                class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
-            >
-                Supprimer
-            </button>
+            <form method="POST" action="{% url 'delete_review' %}">
+                {% csrf_token %}
+                <input type="hidden" name="review_id" value="{{ review.id }}" />
+                <button
+                    class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
+                >
+                    Supprimer
+                </button>
+            </form>
             <button
                 class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
             >
