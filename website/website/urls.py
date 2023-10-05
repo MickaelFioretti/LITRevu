@@ -49,6 +49,11 @@ urlpatterns = [
         name="delete_review",
     ),
     path(
+        "update_review/<int:review_id>/",
+        review.views.ReviewUpdatePageView.as_view(),
+        name="update_review",
+    ),
+    path(
         "post/",
         post.views.PostPageView.as_view(),
         name="post",

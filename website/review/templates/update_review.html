@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col items-center mb-6">
+    <h2>Modifier une critique</h2>
+    <form
+        method="post"
+        enctype="multipart/form-data"
+        class="flex flex-col items-center gap-2 w-9/12 mt-4"
+    >
+        {% csrf_token %}
+
+        <!-- cree un span qui serre de divider -->
+        <span class="w-full border-b border-gray-500"></span>
+
+        <div
+            class="flex flex-col w-[35rem] overflow-hidden bg-white rounded-lg shadow-md"
+        >
+            <img
+                class="object-cover w-full h-64"
+                src="{{ ticket.image.url }}"
+                alt="Article"
+            />
+
+            <div class="p-6">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-blue-600 uppercase">
+                            Ticket
+                        </span>
+                        <span class="text-sm font-light text-gray-600">
+                            {{ ticket.time_created }}
+                        </span>
+                    </div>
+                    <a
+                        href="#"
+                        class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
+                        tabindex="0"
+                        role="link"
+                    >
+                        {{ ticket.title }}
+                    </a>
+                    <p class="mt-2 text-sm text-gray-600">
+                        {{ ticket.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- cree un span qui serre de divider -->
+        <span class="w-full border-b border-gray-500"></span>
+
+        <h2 class="self-center">Critique</h2>
+
+        <!-- Input: for headline of review -->
+        <label for="headline" class="label self-start">Titre</label>
+        <input
+            class="input-text"
+            id="headline"
+            name="headline"
+            type="text"
+            value="{{ review.headline }}"
+        />
+        <!-- Input: for rating review -->
+        <label for="rating" class="label self-start">Note</label>
+        <div class="flex flex-row gap-8 rate">
+            <span>
+                <input class="" id="rating0" name="rating" type="radio"
+                value="0" {% if review.rating == 0 %} checked {% endif %} />
+                <label for="rating0">- 0</label>
+            </span>
+            <span>
+                <input class="" id="rating1" name="rating" type="radio"
+                value="1" {% if review.rating == 1 %} checked {% endif %} />
+                <label for="rating1">- 1</label>
+            </span>
+            <span>
+                <input class="" id="rating2" name="rating" type="radio"
+                value="2" {% if review.rating == 2 %} checked {% endif %} />
+                <label for="rating2">- 2</label>
+            </span>
+            <span>
+                <input class="" id="rating3" name="rating" type="radio"
+                value="3" {% if review.rating == 3 %} checked {% endif %} />
+                <label for="rating3">- 3</label>
+            </span>
+            <span>
+                <input class="" id="rating4" name="rating" type="radio"
+                value="4" {% if review.rating == 4 %} checked {% endif %} />
+                <label for="rating4">- 4</label></span
+            >
+            <span>
+                <input class="" id="rating5" name="rating" type="radio"
+                value="5" {% if review.rating == 5 %} checked {% endif %} />
+                <label for="rating5">- 5</label>
+            </span>
+        </div>
+        <!-- Input: for body of review -->
+        <label for="body" class="label self-start">Description</label>
+        <textarea class="input-text" id="body" name="body" type="text" rows="6">
+{{ review.body }}</textarea
+        >
+        <!-- button: for send form -->
+        <div class="self-end mt-4">
+            <button
+                type="submit"
+                class="button bg-[#D0D3D4] text-[#17202A] hover:bg-[#17202A] hover:text-white"
+            >
+                envoyer
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

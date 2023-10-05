@@ -9,6 +9,10 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class ReviewCreatePageView(LoginRequiredMixin, View):
+    """
+    Page de création d'un review
+    """
+
     template_name = "create_review.html"
 
     def get(self, request):
@@ -53,6 +57,10 @@ class ReviewCreatePageView(LoginRequiredMixin, View):
 
 
 class ReviewDeleteView(LoginRequiredMixin, View):
+    """
+    Page de suppression d'un review
+    """
+
     def post(self, request):
         if request.method == "POST":
             review_id = request.POST.get("review_id")
@@ -63,3 +71,40 @@ class ReviewDeleteView(LoginRequiredMixin, View):
 
             return redirect(settings.LOGIN_REDIRECT_URL)
         return redirect(settings.LOGIN_REDIRECT_URL)
+
+
+class ReviewUpdatePageView(LoginRequiredMixin, View):
+    """
+    Page de modification d'un review
+    """
+
+    template_name = "update_review.html"
+
+    def get(self, request, review_id):
+        review = get_object_or_404(Review, id=review_id)
+        ticket = get_object_or_404(Ticket, id=review.id_ticket.id)
+
+        return render(
+            request,
+            self.template_name,
+            context={"review": review, "ticket": ticket},
+        )
+
+    def post(self, request, review_id):
+        message = ""
+        if request.method == "POST":
+            review = get_object_or_404(Review, id=review_id)
+
+            # Update review
+            headline = request.POST.get("headline")
+            body = request.POST.get("body")
+            rating = request.POST.get("rating")
+            if headline and body and rating:
+                review.headline = headline
+                review.body = body
+                review.rating = rating
+                review.save()
+                return redirect(settings.LOGIN_REDIRECT_URL)
+            else:
+                message = "Veuillez remplir tous les champs."
+        return render(request, self.template_name, context={"message": message})
