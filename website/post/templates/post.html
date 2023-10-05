@@ -13,7 +13,7 @@
     <!-- Display the user's tickets -->
     {% for ticket in tickets %}
     <div
-        class="flex flex-col w-[35rem] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+        class="flex flex-col w-[35rem] overflow-hidden bg-white rounded-lg shadow-md"
     >
         <img
             class="object-cover w-full h-64"
@@ -24,26 +24,22 @@
         <div class="p-6">
             <div>
                 <div class="flex items-center justify-between">
-                    <span
-                        class="text-xs font-bold text-blue-600 uppercase dark:text-blue-400"
-                    >
+                    <span class="text-xs font-bold text-blue-600 uppercase">
                         Ticket
                     </span>
-                    <span
-                        class="text-sm font-light text-gray-600 dark:text-gray-400"
-                    >
+                    <span class="text-sm font-light text-gray-600">
                         {{ ticket.time_created }}
                     </span>
                 </div>
                 <a
                     href="#"
-                    class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
+                    class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
                     tabindex="0"
                     role="link"
                 >
                     {{ ticket.title }}
                 </a>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                <p class="mt-2 text-sm text-gray-600">
                     {{ ticket.description }}
                 </p>
             </div>
@@ -66,17 +62,14 @@
 
     <!-- Display the user's reviews -->
     {% for review in reviews %}
-    <!-- max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800 -->
     <div
-        class="flex flex-col w-[35rem] px-4 py-2 bg-white rounded-lg shadow-md dark:bg-gray-800"
+        class="flex flex-col w-[35rem] px-4 py-2 bg-white rounded-lg shadow-md"
     >
         <div class="flex items-center justify-between">
-            <span
-                class="text-xs font-bold text-blue-600 uppercase dark:text-blue-400"
-            >
+            <span class="text-xs font-bold text-blue-600 uppercase">
                 Critique
             </span>
-            <span class="text-sm font-light text-gray-600 dark:text-gray-400">
+            <span class="text-sm font-light text-gray-600">
                 {{ review.time_created }}
             </span>
         </div>
@@ -84,18 +77,16 @@
         <div class="mt-2">
             <a
                 href="#"
-                class="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline"
+                class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline"
                 tabindex="0"
                 role="link"
                 >{{ review.headline }}</a
             >
-            <p class="mt-2 text-gray-600 dark:text-gray-300">
-                {{ review.body }}
-            </p>
+            <p class="mt-2 text-gray-600">{{ review.body }}</p>
             <div class="flex mt-2 item-center">
                 {% for i in review.rating %}
                 <svg
-                    class="w-5 h-5 text-gray-700 fill-current dark:text-gray-300"
+                    class="w-5 h-5 text-gray-700 fill-current"
                     viewBox="0 0 24 24"
                 >
                     <path
@@ -116,7 +107,7 @@
         </div>
         <!-- Ticket -->
         <div
-            class="flex flex-col w-[33rem] mt-1 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+            class="flex flex-col w-[33rem] mt-1 overflow-hidden bg-white rounded-lg shadow-md"
         >
             <img
                 class="object-cover w-full h-64"
@@ -127,9 +118,7 @@
             <div class="p-6">
                 <div>
                     <div class="flex items-center justify-between">
-                        <span
-                            class="text-xs font-bold text-blue-600 uppercase dark:text-blue-400"
-                        >
+                        <span class="text-xs font-bold text-blue-600 uppercase">
                             Ticket
                         </span>
                         <span class="flex flex-row">
@@ -151,7 +140,7 @@
                                     />
                                 </svg>
                                 <a
-                                    class="font-bold text-gray-700 cursor-pointer dark:text-gray-200"
+                                    class="font-bold text-gray-700 cursor-pointer"
                                     tabindex="0"
                                     role="link"
                                 >
@@ -164,13 +153,13 @@
                     </div>
                     <a
                         href="#"
-                        class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
+                        class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
                         tabindex="0"
                         role="link"
                     >
                         {{ review.id_ticket.title }}
                     </a>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    <p class="mt-2 text-sm text-gray-600">
                         {{ review.id_ticket.description }}
                     </p>
                 </div>
