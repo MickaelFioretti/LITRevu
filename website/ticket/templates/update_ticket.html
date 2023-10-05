@@ -31,14 +31,22 @@
         >
 
         <!-- input file: for image of ticket -->
-        <div class="self-start mb-3">
-            <label for="image" class="label self-start">Image</label>
-            <input
-                class="input-file"
-                id="image"
-                accept="image/png, image/jpeg"
-                name="image"
-                type="file"
+        <div class="flex justify-between mb-3 w-full">
+            <div>
+                <label for="image" class="label self-start">Image</label>
+                <input
+                    class="input-file"
+                    id="image"
+                    accept="image/png, image/jpeg"
+                    name="image"
+                    type="file"
+                />
+            </div>
+
+            <img
+                class="object-cover w-1/2 h-48"
+                src="{{ ticket.image.url }}"
+                alt="Article"
             />
         </div>
 
