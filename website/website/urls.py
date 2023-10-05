@@ -29,6 +29,11 @@ urlpatterns = [
         name="create_ticket",
     ),
     path(
+        "delete_ticket/",
+        ticket.views.TicketDeleteView.as_view(),
+        name="delete_ticket",
+    ),
+    path(
         "create_review/",
         review.views.ReviewCreatePageView.as_view(),
         name="create_review",

@@ -46,11 +46,15 @@
         </div>
 
         <div class="flex self-end p-2 gap-2">
-            <button
-                class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
-            >
-                Supprimer
-            </button>
+            <form method="POST" action="{% url 'delete_ticket' %}">
+                {% csrf_token %}
+                <input type="hidden" name="ticket_id" value="{{ ticket.id }}" />
+                <button
+                    class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
+                >
+                    Supprimer
+                </button>
+            </form>
             <button
                 class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
             >
@@ -59,6 +63,7 @@
         </div>
     </div>
     {% endfor %}
+    <!-- End Display the user's tickets -->
 
     <!-- Display the user's reviews -->
     {% for review in reviews %}
@@ -105,6 +110,7 @@
                 {% endfor %}
             </div>
         </div>
+
         <!-- Ticket -->
         <div
             class="flex flex-col w-[33rem] mt-1 overflow-hidden bg-white rounded-lg shadow-md"
@@ -180,5 +186,6 @@
         </div>
     </div>
     {% endfor %}
+    <!-- End Display the user's reviews -->
 </div>
 {% endblock content %}
