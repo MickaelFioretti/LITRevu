@@ -9,6 +9,10 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class TicketCreatePageView(LoginRequiredMixin, View):
+    """
+    Page de création d'un ticket
+    """
+
     template_name = "create_ticket.html"
 
     def get(self, request):
@@ -35,6 +39,10 @@ class TicketCreatePageView(LoginRequiredMixin, View):
 
 
 class TicketDeleteView(LoginRequiredMixin, View):
+    """
+    Page de suppression d'un ticket
+    """
+
     def post(self, request):
         if request.method == "POST":
             ticket_id = request.POST.get("ticket_id")
@@ -50,3 +58,37 @@ class TicketDeleteView(LoginRequiredMixin, View):
 
             return redirect(settings.LOGIN_REDIRECT_URL)
         return redirect(settings.LOGIN_REDIRECT_URL)
+
+
+class TicketUpdatePageView(LoginRequiredMixin, View):
+    """
+    Page de modification d'un ticket
+    """
+
+    template_name = "update_ticket.html"
+
+    def get(self, request, ticket_id):
+        ticket = get_object_or_404(Ticket, id=ticket_id)
+        return render(
+            request,
+            self.template_name,
+            context={"ticket": ticket},
+        )
+
+    def post(self, request, ticket_id):
+        message = ""
+        if request.method == "POST":
+            title = request.POST.get("title")
+            description = request.POST.get("description")
+            image = request.FILES.get("image")
+            if title and description:
+                ticket = get_object_or_404(Ticket, id=ticket_id)
+                ticket.title = title
+                ticket.description = description
+                if image:
+                    ticket.image = image
+                ticket.save()
+                return redirect(settings.LOGIN_REDIRECT_URL)
+            else:
+                message = "Veuillez remplir tous les champs."
+        return render(request, self.template_name, context={"message": message})

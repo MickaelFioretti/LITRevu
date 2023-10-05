@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col items-center">
+    <h2 class="m-6">Créer un ticket</h2>
+
+    <form
+        method="post"
+        enctype="multipart/form-data"
+        class="flex flex-col items-center gap-2 w-9/12"
+    >
+        {% csrf_token %}
+        <!-- Input: for title of ticket -->
+        <label for="titre" class="label self-start">Titre</label>
+        <input
+            class="input-text"
+            id="titre"
+            name="title"
+            type="text"
+            value="{{ ticket.title }}"
+        />
+
+        <!-- Input: for description of ticket -->
+        <label for="description" class="label self-start">Description</label>
+        <textarea
+            class="input-text"
+            id="description"
+            name="description"
+            type="text"
+            rows="6"
+        >
+{{ticket.description}}</textarea
+        >
+
+        <!-- input file: for image of ticket -->
+        <div class="self-start mb-3">
+            <label for="image" class="label self-start">Image</label>
+            <input
+                class="input-file"
+                id="image"
+                accept="image/png, image/jpeg"
+                name="image"
+                type="file"
+            />
+        </div>
+
+        <!-- button: for send form -->
+        <div class="self-end mt-4">
+            <button
+                type="submit"
+                class="button bg-[#D0D3D4] text-[#17202A] hover:bg-[#17202A] hover:text-white"
+            >
+                envoyer
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
