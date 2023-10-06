@@ -10,8 +10,9 @@ class PostPageView(View):
     template_name = "post.html"
 
     def get(self, request):
-        tickets = Ticket.objects.all()
-        reviews = Review.objects.all()
+        # Get all tickets and reviews form the connected user
+        tickets = Ticket.objects.filter(id_user=request.user.id)
+        reviews = Review.objects.filter(id_user=request.user.id)
         message = ""
 
         # Change the format of the time_created field 13:14, 26 août 2020
