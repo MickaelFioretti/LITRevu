@@ -1,25 +1,10 @@
-{% extends 'base.html' %} {% block content %} {% load i18n %}
-<style>
-    .rating {
-        font-size: 24px; /* Taille de la police pour les étoiles */
-    }
-
-    .star {
-        color: gold; /* Couleur des étoiles remplies */
-    }
-</style>
+{% extends 'base.html' %} {% block content %}
 <div class="flex flex-col items-center mb-6 gap-3">
     <h2 class="m-6">{{message}}</h2>
     <!-- Display the user's tickets -->
     {% for ticket in tickets %}
-    <div
-        class="flex flex-col w-[35rem] overflow-hidden bg-white rounded-lg shadow-md"
-    >
-        <img
-            class="object-cover w-full h-64"
-            src="{{ ticket.image.url }}"
-            alt="Article"
-        />
+    <div class="flex flex-col w-[35rem] overflow-hidden bg-white rounded-lg shadow-md">
+        <img class="object-cover w-full h-64" src="{{ ticket.image.url }}" alt="Article" />
 
         <div class="p-6">
             <div>
@@ -31,12 +16,9 @@
                         {{ ticket.time_created }}
                     </span>
                 </div>
-                <a
-                    href="#"
+                <a href="#"
                     class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
-                    tabindex="0"
-                    role="link"
-                >
+                    tabindex="0" role="link">
                     {{ ticket.title }}
                 </a>
                 <p class="mt-2 text-sm text-gray-600">
@@ -49,15 +31,11 @@
             <form method="POST" action="{% url 'delete_ticket' %}">
                 {% csrf_token %}
                 <input type="hidden" name="ticket_id" value="{{ ticket.id }}" />
-                <button
-                    class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
-                >
+                <button class="button text-[#17202A] hover:bg-[#17202A] hover:text-white">
                     Supprimer
                 </button>
             </form>
-            <button
-                class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
-            >
+            <button class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white">
                 <a href="{% url 'update_ticket' ticket.id %}">Modifier</a>
             </button>
         </div>
@@ -67,9 +45,7 @@
 
     <!-- Display the user's reviews -->
     {% for review in reviews %}
-    <div
-        class="flex flex-col w-[35rem] px-4 py-2 bg-white rounded-lg shadow-md"
-    >
+    <div class="flex flex-col w-[35rem] px-4 py-2 bg-white rounded-lg shadow-md">
         <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-blue-600 uppercase">
                 Critique
@@ -80,46 +56,27 @@
         </div>
 
         <div class="mt-2">
-            <a
-                href="#"
-                class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                tabindex="0"
-                role="link"
-                >{{ review.headline }}</a
-            >
+            <a href="#" class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline" tabindex="0"
+                role="link">{{ review.headline }}</a>
             <p class="mt-2 text-gray-600">{{ review.body }}</p>
             <div class="flex mt-2 item-center">
                 {% for i in review.rating %}
-                <svg
-                    class="w-5 h-5 text-gray-700 fill-current"
-                    viewBox="0 0 24 24"
-                >
+                <svg class="w-5 h-5 text-gray-700 fill-current" viewBox="0 0 24 24">
                     <path
-                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                    />
+                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
                 </svg>
                 {% endfor %} {% for i in review.rating_empty %}
-                <svg
-                    class="w-5 h-5 text-gray-500 fill-current"
-                    viewBox="0 0 24 24"
-                >
+                <svg class="w-5 h-5 text-gray-500 fill-current" viewBox="0 0 24 24">
                     <path
-                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                    />
+                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
                 </svg>
                 {% endfor %}
             </div>
         </div>
 
         <!-- Ticket -->
-        <div
-            class="flex flex-col w-[33rem] mt-1 overflow-hidden bg-white rounded-lg shadow-md"
-        >
-            <img
-                class="object-cover w-full h-64"
-                src="{{ review.id_ticket.image.url }}"
-                alt="Article"
-            />
+        <div class="flex flex-col w-[33rem] mt-1 overflow-hidden bg-white rounded-lg shadow-md">
+            <img class="object-cover w-full h-64" src="{{ review.id_ticket.image.url }}" alt="Article" />
 
             <div class="p-6">
                 <div>
@@ -129,27 +86,14 @@
                         </span>
                         <span class="flex flex-row">
                             <div class="flex items-center">
-                                <svg
-                                    class="hidden object-cover w-10 h-10 mx-2 rounded-full sm:block text-gray-500"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 32 32"
-                                >
-                                    <path
-                                        fill="none"
-                                        d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0ZM20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5Z"
-                                    />
-                                    <path
-                                        fill="currentColor"
-                                        d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8ZM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0Z"
-                                    />
+                                <svg class="hidden object-cover w-10 h-10 mx-2 rounded-full sm:block text-gray-500"
+                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                    <path fill="none"
+                                        d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0ZM20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5Z" />
+                                    <path fill="currentColor"
+                                        d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8ZM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0Z" />
                                 </svg>
-                                <a
-                                    class="font-bold text-gray-700 cursor-pointer"
-                                    tabindex="0"
-                                    role="link"
-                                >
+                                <a class="font-bold text-gray-700 cursor-pointer" tabindex="0" role="link">
                                     {% if review.id_ticket.id_user == user%}Vous
                                     {%else%} {{ review.id_ticket.id_user }}
                                     {%endif%}
@@ -157,12 +101,9 @@
                             </div>
                         </span>
                     </div>
-                    <a
-                        href="#"
+                    <a href="#"
                         class="block mt-2 text-xl font-bold text-gray-800 transition-colors duration-300 transform hover:text-gray-600 hover:underline"
-                        tabindex="0"
-                        role="link"
-                    >
+                        tabindex="0" role="link">
                         {{ review.id_ticket.title }}
                     </a>
                     <p class="mt-2 text-sm text-gray-600">
@@ -176,15 +117,11 @@
             <form method="POST" action="{% url 'delete_review' %}">
                 {% csrf_token %}
                 <input type="hidden" name="review_id" value="{{ review.id }}" />
-                <button
-                    class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
-                >
+                <button class="button text-[#17202A] hover:bg-[#17202A] hover:text-white">
                     Supprimer
                 </button>
             </form>
-            <button
-                class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
-            >
+            <button class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white">
                 <a href="{% url 'update_review' review.id %}">Modifier</a>
             </button>
         </div>
