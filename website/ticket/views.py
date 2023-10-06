@@ -54,6 +54,8 @@ class TicketDeleteView(LoginRequiredMixin, View):
                 review.delete()
 
             # Supprimez le ticket
+            if ticket.image:
+                ticket.image.delete()
             ticket.delete()
 
             return redirect(settings.LOGIN_REDIRECT_URL)
