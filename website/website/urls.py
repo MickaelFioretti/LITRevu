@@ -5,6 +5,7 @@ import flux.views
 import ticket.views
 import review.views
 import post.views
+import subscription.views
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -57,6 +58,11 @@ urlpatterns = [
         "post/",
         post.views.PostPageView.as_view(),
         name="post",
+    ),
+    path(
+        "abonnements/",
+        subscription.views.SubscriptionPageView.as_view(),
+        name="abonnements",
     ),
 ]
 

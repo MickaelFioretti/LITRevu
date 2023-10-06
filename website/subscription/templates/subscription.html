@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col items-center gap-4">
+    <!-- Suivre d'autres utilisateurs -->
+    <h1>Suivre d'autres utilisateurs</h1>
+
+    <div class="w-8/12">
+        <form method="post" action="" class="flex felx-row items-center gap-2">
+            {% csrf_token %}
+            <input
+                type="text"
+                class="input-text"
+                placeholder="Nom d'utilisateur"
+                name="username"
+            />
+            <input type="hidden" name="action" value="follow" />
+            <div>
+                <button
+                    type="submit"
+                    class="button bg-[#D0D3D4] text-[#17202A] hover:bg-[#17202A] hover:text-white"
+                >
+                    Envoyer
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Abonnements -->
+    <h1>Abonnements</h1>
+
+    <div class="w-5/12">
+        <ul class="flex flex-col gap-3">
+            {% for abonnement in abonnements %}
+            <li class="flex flex-row items-center justify-between">
+                <div class="flex flex-row items-center">
+                    <svg
+                        class="hidden object-cover w-10 h-10 mx-2 rounded-full sm:block text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                    >
+                        <path
+                            fill="none"
+                            d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0ZM20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5Z"
+                        />
+                        <path
+                            fill="currentColor"
+                            d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8ZM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0Z"
+                        />
+                    </svg>
+                    <p>{{ abonnement.followed_user.username }}</p>
+                </div>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="unfollow" />
+                    <input
+                        type="hidden"
+                        name="user_id"
+                        value="{{ abonnement.followed_user.id }}"
+                    />
+                    <button
+                        type="submit"
+                        class="button bg-[#D0D3D4] text-[#17202A] hover:bg-[#17202A] hover:text-white"
+                    >
+                        Se désabonner
+                    </button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Abonnés -->
+    <h1>Abonnés</h1>
+
+    <div class="w-5/12">
+        <ul class="flex flex-col gap-3">
+            {% for abonne in abonnes %}
+            <li class="self-start">
+                <div class="flex flex-row items-center">
+                    <svg
+                        class="hidden object-cover w-10 h-10 mx-2 rounded-full sm:block text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                    >
+                        <path
+                            fill="none"
+                            d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0ZM20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5Z"
+                        />
+                        <path
+                            fill="currentColor"
+                            d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8ZM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0Z"
+                        />
+                    </svg>
+                    <p>{{ abonne.user.username }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
