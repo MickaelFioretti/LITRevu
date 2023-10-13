@@ -43,6 +43,27 @@ class FluxPageView(LoginRequiredMixin, View):
             tickets.extend(user_tickets)
             reviews.extend(user_reviews)
 
+        # Get your own tickets and reviews
+        your_tickets = Ticket.objects.filter(id_user=request.user)
+        your_reviews = Review.objects.filter(id_user=request.user)
+
+        for ticket in your_tickets:
+            ticket.post_type = "Ticket"
+            ticket.time_created = datetime.strptime(
+                ticket.time_created.strftime("%H:%M, %d %B %Y"), "%H:%M, %d %B %Y"
+            )
+        for review in your_reviews:
+            review.post_type = "Review"
+            review.time_created = datetime.strptime(
+                review.time_created.strftime("%H:%M, %d %B %Y"), "%H:%M, %d %B %Y"
+            )
+            review.rating_empty = range(5 - review.rating)
+            review.rating = range(review.rating)
+
+        # Add your own tickets and reviews to their respective lists
+        tickets.extend(your_tickets)
+        reviews.extend(your_reviews)
+
         # combine and sort tickets and reviews
         posts = sorted(
             chain(tickets, reviews), key=lambda post: post.time_created, reverse=True
