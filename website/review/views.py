@@ -108,3 +108,43 @@ class ReviewUpdatePageView(LoginRequiredMixin, View):
             else:
                 message = "Veuillez remplir tous les champs."
         return render(request, self.template_name, context={"message": message})
+
+
+class CreateReviewOnTicketPageView(LoginRequiredMixin, View):
+    """
+    Page de création d'un review sur un ticket
+    """
+
+    template_name = "create_review_on_ticket.html"
+
+    def get(self, request, ticket_id):
+        ticket = get_object_or_404(Ticket, id=ticket_id)
+
+        return render(
+            request,
+            self.template_name,
+            context={"ticket": ticket},
+        )
+
+    def post(self, request, ticket_id):
+        message = ""
+        if request.method == "POST":
+            ticket = get_object_or_404(Ticket, id=ticket_id)
+
+            # Create review
+            headline = request.POST.get("headline")
+            body = request.POST.get("body")
+            rating = request.POST.get("rating")
+            if headline and body and rating:
+                review = Review.objects.create(
+                    headline=headline,
+                    body=body,
+                    rating=rating,
+                    id_user=request.user,
+                    id_ticket=ticket,
+                )
+                review.save()
+                return redirect(settings.LOGIN_REDIRECT_URL)
+            else:
+                message = "Veuillez remplir tous les champs."
+        return render(request, self.template_name, context={"message": message})

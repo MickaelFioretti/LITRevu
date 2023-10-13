@@ -55,6 +55,11 @@ urlpatterns = [
         name="update_review",
     ),
     path(
+        "create_review_on_ticket/<int:ticket_id>/",
+        review.views.CreateReviewOnTicketPageView.as_view(),
+        name="create_review_on_ticket",
+    ),
+    path(
         "post/",
         post.views.PostPageView.as_view(),
         name="post",
