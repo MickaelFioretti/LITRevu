@@ -47,11 +47,15 @@ class FluxPageView(LoginRequiredMixin, View):
         your_tickets = Ticket.objects.filter(id_user=request.user)
         your_reviews = Review.objects.filter(id_user=request.user)
 
+        # Récupérez les réponses aux billets de l'utilisateur connecté
+        your_ticket_responses = Review.objects.filter(id_ticket__id_user=request.user)
+
         for ticket in your_tickets:
             ticket.post_type = "Ticket"
             ticket.time_created = datetime.strptime(
                 ticket.time_created.strftime("%H:%M, %d %B %Y"), "%H:%M, %d %B %Y"
             )
+
         for review in your_reviews:
             review.post_type = "Review"
             review.time_created = datetime.strptime(
@@ -60,9 +64,21 @@ class FluxPageView(LoginRequiredMixin, View):
             review.rating_empty = range(5 - review.rating)
             review.rating = range(review.rating)
 
+        for ticket_response in your_ticket_responses:
+            ticket_response.post_type = "Review"
+            ticket_response.time_created = datetime.strptime(
+                ticket_response.time_created.strftime("%H:%M, %d %B %Y"),
+                "%H:%M, %d %B %Y",
+            )
+            ticket_response.rating_empty = range(5 - ticket_response.rating)
+            ticket_response.rating = range(ticket_response.rating)
+
         # Add your own tickets and reviews to their respective lists
         tickets.extend(your_tickets)
         reviews.extend(your_reviews)
+
+        # Add ticket responses to the list
+        reviews.extend(your_ticket_responses)
 
         # combine and sort tickets and reviews
         posts = sorted(
