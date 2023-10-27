@@ -6,43 +6,20 @@
         {% csrf_token %}
         <!-- Input: for username -->
         <label for="username" class="label self-start">Nom d'utilisateur</label>
-        <input
-            class="input-text"
-            name="username"
-            type="text"
-            placeholder="Nom d'utilisateur"
-        />
+        <input class="input-text" name="username" type="text" placeholder="Nom d'utilisateur" />
 
         <!-- Input: for password -->
         <label for="password1" class="label self-start">Mot de passe</label>
-        <input
-            class="input-password"
-            name="password1"
-            type="password"
-            placeholder="********"
-        />
+        <input class="input-password" name="password1" type="password" placeholder="********" />
 
         <!-- Input: for password confirmation -->
-        <label for="password2" class="label self-start"
-            >Confirmer le mot de passe</label
-        >
-        <input
-            class="input-password"
-            name="password2"
-            type="password"
-            placeholder="Confirmer le mot de passe"
-        />
+        <label for="password2" class="label self-start">Confirmer le mot de passe</label>
+        <input class="input-password" name="password2" type="password" placeholder="Confirmer le mot de passe" />
 
         <div class="self-end mt-4">
-            <button
-                class="button text-[#17202A] hover:bg-[#17202A] hover:text-white"
-            >
-                <a href="{% url 'login' %}">Retourner</a>
-            </button>
-            <button
-                type="submit"
-                class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white"
-            >
+            <a class="button text-[#17202A] hover:bg-[#17202A] hover:text-white" href="{% url 'login' %}">Retourner</a>
+
+            <button type="submit" class="button bg-[#D0D3D4] text-[#34495E] hover:bg-[#718093] hover:text-white">
                 S'inscrire
             </button>
         </div>
